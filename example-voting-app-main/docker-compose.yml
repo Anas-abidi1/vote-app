@@ -10,6 +10,7 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+    image: anas999/vote-pfe:v1
     healthcheck: 
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 15s
@@ -23,6 +24,7 @@ services:
     networks:
       - front-tier
       - back-tier
+    image: anas999/result-pfe:v1
 
   result:
     build: ./result
@@ -50,7 +52,7 @@ services:
         condition: service_healthy 
     networks:
       - back-tier
-
+    image: anas999/worker-pfe:v1
   redis:
     image: redis:alpine
     volumes:
