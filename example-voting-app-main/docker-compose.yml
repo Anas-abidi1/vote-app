@@ -24,7 +24,7 @@ services:
     networks:
       - front-tier
       - back-tier
-    image: anas999/result-pfe:v1
+     
 
   result:
     build: ./result
@@ -41,6 +41,7 @@ services:
     networks:
       - front-tier
       - back-tier
+    image: anas999/result-pfe:v1
 
   worker:
     build:
