@@ -31,17 +31,20 @@ services:
     # use nodemon rather than node for local dev
     entrypoint: nodemon --inspect=0.0.0.0 server.js
     depends_on:
-      db:
-        condition: service_healthy 
-    volumes:
-      - ./result:/usr/local/app
-    ports:
-      - "5001:80"
-      - "127.0.0.1:9229:9229"
-    networks:
-      - front-tier
-      - back-tier
-    image: anas999/result-pfe:v1
+      # db:
+#   image: postgres:15-alpine
+#   environment:
+#     POSTGRES_USER: "postgres"
+#     POSTGRES_PASSWORD: "postgres"
+#   volumes:
+#     - "db-data:/var/lib/postgresql/data"
+#     - "./healthchecks:/healthchecks"
+#   healthcheck:
+#     test: /healthchecks/postgres.sh
+#     interval: "5s"
+#   networks:
+#     - back-tier
+
 
   worker:
     build:
